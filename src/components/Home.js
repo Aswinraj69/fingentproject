@@ -64,7 +64,14 @@ function Home() {
       footer: '<a href="">check list products!</a>'
     })
     if (products[index].p_qty < p_qty) {
+      Swal.fire({
+        icon: 'error',
+        title: 'quantity',
+        text: ' set to zero',
+        footer: '<a href="">check list products!</a>'
+      })
       p_qty = products[index].p_qty
+      
     }
     setProducts([...products, products[index].p_qty -= p_qty])
   }
