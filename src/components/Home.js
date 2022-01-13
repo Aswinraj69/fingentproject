@@ -1,10 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
+import useForm from '../useForm'
+import validate from '../validateinfo'
 import { Navbar, Nav, Container, Button, Row, Col, InputGroup, FormControl, Form, Table } from 'react-bootstrap'
 
 
 function Home() {
+
+  const {handleChange,values,handleSubmit,errors} = useForm();
 
   const [row, setRow] = useState(0)
   const [addbtn, setAddbtn] = useState(false)
@@ -35,12 +39,15 @@ function Home() {
             <FormControl
               placeholder="Product Code"
               aria-label="Product Code"
+              type="number"
               name={"productcode"}
               aria-describedby="basic-addon1"
             />
+            
             <FormControl
               placeholder="Quantity"
               aria-label="Quantity"
+              type="number"
               name="productqty"
               aria-describedby="basic-addon1"
             />
@@ -121,21 +128,34 @@ function Home() {
             <FormControl
               placeholder="Product Code"
               aria-label="Product Code"
+              type="number"
               name="productcode"
               aria-describedby="basic-addon1"
+              value={values.productcode}
+              onChange={handleChange}
+              
             />
+            {errors.productcode && <p>{errors.productcode}</p>}
             <FormControl
               placeholder="Product Name"
               aria-label="Product Name"
+              type="text"
               name="productname"
               aria-describedby="basic-addon1"
+              value={values.productname}
+              onChange={handleChange}
             />
+            {errors.productname && <p>{errors.productname}</p>}
             <FormControl
               placeholder="Quantity"
               aria-label="Quantity"
+              type="number"
               name="productqty"
               aria-describedby="basic-addon1"
+              value={values.productqty}
+              onChange={handleChange}
             />
+            {errors.productqty && <p>{errors.productqty}</p>}
             <Button type='submit' >ADD </Button>
           </InputGroup>
         </Col>
